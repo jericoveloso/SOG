@@ -2633,15 +2633,14 @@ var productPage = {
                      + '" class="swatch-element ' + color + value.replace(/\W+/g, "-") + '-swatch ' + as + '">';
 
                       if (is_color) {
-                        template += '<div class="tooltip">' + value + '</div>';
+                        template += '<div class="tooltip">' + value.replace(/-/g, ' ') + '</div>';
                       }
-
                       if (is_color) {
                         let option_color = value.split(' ')[1] ? value.split(' ')[1] : value.split(' ')[0];
                         let handle_color = value.toLowerCase().split(' ').join('_');
                         template += '<label for="swatch-'
                          + option_index + '-' + value.replace(/\W+/g, "-") + '-' + product.id
-                         + '" style="background-color: ' + (typeof color_list[handle_color] != 'undefined' ? color_list[handle_color] : option_color)
+                         + '" style="background-color: ' + (typeof color_list[handle_color] != 'undefined' ? color_list[handle_color] : (value.toLowerCase().replace(/[-\W]/g, '') == 'multicolor' ? 'red;background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet);background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);': option_color))
                          + '"><span class="crossed-out"></span></label>';
                       } else {
                         template += '<label for="swatch-'
