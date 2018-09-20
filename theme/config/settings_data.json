@@ -3281,7 +3281,7 @@
     "search_type_tags": "accessory-pouches,bandanas,style-bath-towel,style-beach-towel,body-pillows,canvas-wall-arts,fleece-blankets,gift-card,golf-towels,hand-towels,hoodies,long-sleeves,one-pieces,pillow-cases,straight-bottom-pouch,sweatshirts,t-shirts,tank-tops,tapered-bottom-pouch,throw-blankets,throw-pillows,tote-bags,work-shirts",
     "search_department_tags": "gender-age-mens,gender-age-womens,gender-age-toddler",
     "search_size_tags": "size-xs,size-s,size-m,size-l,size-xl,size-2xl,size-xxl,size-3xl,size-4xl,size-5xl",
-    "search_color_tags": "color-arcgr-rust,color-arcgry-blk,color-arcgry-nvy,color-athletic-heather,color-banana,color-beige,color-black,color-blue,color-brown,color-cardinal,color-carolina-blue,color-char-heather,color-charcoal,color-chill,color-cobalt,color-coffee,color-cream,color-deep-purple-heather,color-deep-sea,color-deep-sea-heather,color-gold,color-gray,color-gray-heather,color-green,color-heather,color-heather-black,color-hot-pink,color-hotpink,color-hunter-green,color-indigo,color-indigo-heather,color-kel-heather,color-kelly,color-kelly-green,color-lavendar,color-lavender,color-light-blue,color-lt-blu-heather,color-lt-blue,color-military-green,color-mint,color-mocha,color-mocha-heather,color-moss-heather,color-moth-heather,color-multi-color,color-multi-colored,color-multicolor,color-navy,color-navy-heather,color-orange,color-pink,color-platinum,color-platinum-heather,color-pur-berry,color-purple,color-red,color-red-heather,color-roy-heather,color-royal,color-royal-blue,color-safari-green,color-sand,color-silver,color-sky-heather,color-slate,color-slate-blue,color-smoke,color-smoke-heather,color-soft-green,color-steel-blue,color-steel-blue-heather,color-sublimate-white,color-tahi-blue,color-tan,color-turq,color-turq-heather,color-turquoise,color-white,color-white-black,color-yellow",
+    "search_color_tags": "color-athletic-heather,color-black,color-blue,color-brown,color-charcoal,color-cream,color-gray,color-green,color-lavender,color-light-blue,color-military-green,color-multi-color,color-navy-blue,color-orange,color-pink,color-purple,color-red,color-royal-blue,color-slate,color-tan,color-turquoise,color-white,color-yellow",
     "mobile_products_per_row": "2",
     "pagination_type": "load_more",
     "align_height": true,
@@ -4252,7 +4252,7 @@
             "type": "filter",
             "settings": {
               "filter_name": "COLOR",
-              "filter_tags": "color-arcgr-rust,color-arcgry-blk,color-arcgry-nvy,color-athletic-heather,color-banana,color-beige,color-black,color-blue,color-brown,color-cardinal,color-carolina-blue,color-char-heather,color-charcoal,color-chill,color-cobalt,color-coffee,color-cream,color-deep-purple-heather,color-deep-sea,color-deep-sea-heather,color-gold,color-gray,color-gray-heather,color-green,color-heather,color-heather-black,color-hot-pink,color-hotpink,color-hunter-green,color-indigo,color-indigo-heather,color-kel-heather,color-kelly,color-kelly-green,color-lavendar,color-lavender,color-light-blue,color-lt-blu-heather,color-lt-blue,color-military-green,color-mint,color-mocha,color-mocha-heather,color-moss-heather,color-moth-heather,color-multi-color,color-multi-colored,color-multicolor,color-navy,color-navy-heather,color-orange,color-pink,color-platinum,color-platinum-heather,color-pur-berry,color-purple,color-red,color-red-heather,color-roy-heather,color-royal,color-royal-blue,color-safari-green,color-sand,color-silver,color-sky-heather,color-slate,color-slate-blue,color-smoke,color-smoke-heather,color-soft-green,color-steel-blue,color-steel-blue-heather,color-sublimate-white,color-tahi-blue,color-tan,color-turq,color-turq-heather,color-turquoise,color-white,color-white-black,color-yellow",
+              "filter_tags": "color-athletic-heather,color-black,color-blue,color-brown,color-charcoal,color-cream,color-gray,color-green,color-lavender,color-light-blue,color-military-green,color-multi-color,color-navy-blue,color-orange,color-pink,color-purple,color-red,color-royal-blue,color-slate,color-tan,color-turquoise,color-white,color-yellow",
               "enable_filter_swatches": true
             }
           }
@@ -4701,6 +4701,10 @@
           "1537224878814"
         ],
         "settings": {}
+      },
+      "1537257935787": {
+        "type": "yellow-ribbon",
+        "settings": {}
       }
     },
     "content_for_index": [
@@ -4709,6 +4713,7 @@
       "1489285116594",
       "1536665873012",
       "1536941908526",
+      "1537257935787",
       "1513220410792",
       "1489285418400",
       "1489285451288"
