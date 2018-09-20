@@ -87,8 +87,23 @@
 </div>
 
 <hr class="hr">
-            
 
+<h2 class="sg">All Active Color Tags</h2>
+<hr class="hr">
+
+<div class="sog-container-wide">
+  <div class="row">
+    <div class="col">
+      <ul>
+        {%- for tag in collections['all'].all_tags -%}
+          {%- if tag contains 'color-' -%}
+            <li style="display:inline-block;width:25%;">{{- tag -}}</li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
 <style>
   .sg { margin-top: 15px; margin-bottom: 15px; text-align: center; }
   .sg-mask { background-color: #eee; }
