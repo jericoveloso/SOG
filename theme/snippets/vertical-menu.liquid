@@ -1,4 +1,6 @@
-<div class="vertical-menu">
+{%- unless vertical-menu == blank -%}
+<li class="vertical-menu">
+  <ul>
   {% for link in linklists[vertical-menu].links %}
     {% if linklists[link.handle] == empty %}
       <li><a href="{{ link.url }}" class="top_link" data-dropdown-rel="{{ link.handle }}">{{ link.title }}</a></li>
@@ -22,4 +24,6 @@
       </li>
     {% endif %}
   {% endfor %}
-</div>
+  </ul>
+</li>
+{%- endunless -%}
