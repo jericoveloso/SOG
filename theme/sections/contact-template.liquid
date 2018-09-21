@@ -75,6 +75,23 @@
         <input type="tel" id="contactFormPhone" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
         {% endcomment %}
 
+        <div class="five columns alpha">
+          <label for="contactFormQuestionType">Reason <span class="red">*</span></label>
+          <select id="contactFormQuestionType" name="contact[regarding]" style="border-color:#ccc;">
+            <option>-Please Select a Reason-</option>
+            <option>Cancellations</option>
+            <option>Order Modifications</option>
+            <option>Order Price Adjustment</option>
+            <option>Shipping &amp; Delivery</option>
+            <option>Returns/Exchanges/Defects</option>
+            <option>General Information</option>
+          </select>
+        </div>
+        <div class="five columns omega">
+          <label for="contactFormOrder">Order Number <span class="red">*</span></label>
+          <input id="contactFormOrder" type="text" name="contact[order number]" placeholder="Order number" required>
+        </div>
+
       <label for="contactFormMessage">{{ 'contact.form.message' | t }} <span class="red">*</span></label>
       <textarea rows="5" id="contactFormMessage" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}" required="required">{% if form.body %}{{ form.body }}{% endif %}</textarea>
 
