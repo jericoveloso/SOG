@@ -31,7 +31,7 @@
       {% endif %}
     </a>
     {% if section.settings.search_enabled %}
-      <a href="/search" class="icon-search dropdown_link" title="{{ 'general.search.title' | t | escape }}" data-dropdown-rel="search"></a>
+      <a href="/search" class="icon-search dropdown_link" title="{{ 'general.search.title' | t | escape }}" data-dropdown-relX="search" data-toggle-search></a>
     {% endif %}
     {% if section.settings.show_cart %}
       <div class="cart_container">
@@ -231,6 +231,11 @@
               </ul>
             </form>
           </div>
+          {% if section.settings.search_enabled %}
+            <div class="search_link">
+              <a href="/search" class="dropdown_link" title="{{ 'general.search.title' | t | escape }}" data-dropdown-relX="search" data-toggle-search><i class="icon-search"></i></a>
+            </div>
+          {% endif %}
         </div>
       {% endif %}
 
@@ -299,8 +304,11 @@
           {% else %}
             {% include 'menu' with section.settings.main_linklist2 %}
           {% endif %}
+        {% endcapture %}
+
+        {%- capture menu_search -%}
           {% if section.settings.search_enabled %}
-            <li class="search_container">
+            <div class="search_container">
               <form action="/search" class="search_form">
                 {% if settings.search_option != 'everything' %}
                   <input type="hidden" name="type" value="product" />
@@ -308,30 +316,28 @@
                 <span class="icon-search search-submit"></span>
                 <input type="text" name="q" placeholder="{{ 'general.search.title' | t: shop_name: shop.name }}" value="{% if search and search.results.first.price %}{{ search.terms }}{% endif %}" autocapitalize="off" autocomplete="off" autocorrect="off" class="instant-search" />
               </form>
-            </li>
-            <li class="search_link">
-              <a href="/search" class="icon-search dropdown_link" title="{{ 'general.search.title' | t | escape }}" data-dropdown-rel="search"></a>
-            </li>
+            </div>
           {% endif %}
-        {% endcapture %}
+        {%- endcapture -%}
 
         {% if section.settings.logo_position == "left" or section.settings.menu_position == "block" %}
           {{ logo }}
+          {{ menu_search }}
           <div class="nav">
-            <ul class="menu {{ section.settings.menu_alignment }} clearfix">
+            <ul class="menu {{ section.settings.menu_alignment }} clearfixX">
               {{ menu_left }}
               {{ menu_right }}
             </ul>
           </div>
         {% else %}
           <div class="nav">
-            <ul class="menu {{ section.settings.menu_alignment }} clearfix">
+            <ul class="menu {{ section.settings.menu_alignment }} clearfixX">
               {{ menu_left }}
             </ul>
           </div>
           {{ logo }}
           <div class="nav">
-            <ul class="menu {% if section.settings.menu_alignment == 'align_left' %}align_right{% elsif section.settings.menu_alignment == 'align_right' %}align_left{% else %}{{ section.settings.menu_alignment }}{% endif %} clearfix">
+            <ul class="menu {% if section.settings.menu_alignment == 'align_left' %}align_right{% elsif section.settings.menu_alignment == 'align_right' %}align_left{% else %}{{ section.settings.menu_alignment }}{% endif %} clearfixX">
               {{ menu_right }}
             </ul>
           </div>
@@ -359,36 +365,36 @@
 
 <style>
   .main_nav div.logo a {
-    padding-top: {{ section.settings.logo_top_padding }}px;
-    padding-bottom: {{ section.settings.logo_top_padding }}px;
+    {% comment %} padding-top: {{ section.settings.logo_top_padding }}px; {% endcomment %}
+    {% comment %} padding-bottom: {{ section.settings.logo_top_padding }}px; {% endcomment %}
   }
 
   div.logo img {
-    max-width: {{ section.settings.logo_display_width }}px;
+    {% comment %} max-width: {{ section.settings.logo_display_width }}px; {% endcomment %}
   }
 
   .nav {
     {% if section.settings.menu_position == "block" %}
-      width: 100%;
-      clear: both;
+      {% comment %} width: 100%; {% endcomment %}
+      {% comment %} clear: both; {% endcomment %}
     {% elsif section.settings.logo_position == "left" %}
-      width: 84%;
-      float: left;
+      {% comment %} width: 84%; {% endcomment %}
+      {% comment %} float: left; {% endcomment %}
     {% else %}
-      width: 42%;
-      float: left;
+      {% comment %} width: 42%; {% endcomment %}
+      {% comment %} float: left; {% endcomment %}
     {% endif %}
   }
 
   {% if section.settings.menu_top_padding %}
     .nav ul.menu {
-      padding-top: {{ section.settings.menu_top_padding }}px;
-      padding-bottom: {{ section.settings.menu_top_padding }}px;
+      {% comment %} padding-top: {{ section.settings.menu_top_padding }}px; {% endcomment %}
+      {% comment %} padding-bottom: {{ section.settings.menu_top_padding }}px; {% endcomment %}
     }
 
     .sticky_nav ul.menu, .sticky_nav .mini_cart {
-      padding-top: {{ section.settings.menu_top_padding | divided_by: 2 }}px;
-      padding-bottom: {{ section.settings.menu_top_padding | divided_by: 2 }}px;
+      /*padding-top: {{ section.settings.menu_top_padding | divided_by: 2 }}px;*/
+      /*padding-bottom: {{ section.settings.menu_top_padding | divided_by: 2 }}px;*/
     }
   {% endif %}
 
