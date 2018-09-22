@@ -62,14 +62,22 @@
         {% endif %}
 
         {% if section.settings.product_breadcrumb %}
-          <div class="breadcrumb_text" itemscope itemtype="http://schema.org/BreadcrumbList">
-            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="item" class="breadcrumb_link"><span itemprop="name">{{ 'general.breadcrumbs.home' | t }}</span></a></span>
+          <div class="breadcrumb_text">
+            <span>
+              <a href="{{ shop.url }}" title="{{ shop.name | escape }}" class="breadcrumb_link">
+                <span>{{ 'general.breadcrumbs.home' | t }}</span>
+              </a>
+            </span>
             <span class="breadcrumb-divider">/</span>
-            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <span>
               {% if collection %}
-                <a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="item" class="breadcrumb_link"><span itemprop="name">{{ collection.title }}</span></a>
+                <a href="{{ collection.url }}" title="{{ collection.title | escape }}" class="breadcrumb_link">
+                  <span>{{ collection.title }}</span>
+                </a>
               {% else %}
-                <a href="/collections/all" title="{{ collections.all.title }}" class="breadcrumb_link"><span>{{ collections.all.title }}</span></a>
+                <a href="/collections/all" title="{{ collections.all.title }}" class="breadcrumb_link">
+                  <span>{{ collections.all.title }}</span>
+                </a>
               {% endif %}
             </span>
             <span class="breadcrumb-divider">/</span>
@@ -101,9 +109,9 @@
     <div  class="product-container product-{{ product.id }}"
           data-free-text="{{ settings.free_price_text }}"
           >
-      <div class="bootstrap section product_section clearfix js-product_section {% if section.settings.product_images_position == 'right' %}align_right--images{% endif %}" itemscope itemtype="http://schema.org/Product" data-rv-handle="{{ product.handle }}">
+      <div class="bootstrap section product_section clearfix js-product_section {% if section.settings.product_images_position == 'right' %}align_right--images{% endif %}" data-rv-handle="{{ product.handle }}">
         
-        <h1 class="product_name" itemprop="name">{{ product.title }}</h1>
+        <h1 class="product_name">{{ product.title }}</h1>
         <div class="row">
           <div class="col-xs-12 col-sm-6 colums alpha" id="tabs_section">
             <ul class="tabs design-group" style="display: none;">
@@ -176,7 +184,7 @@
               <div class="sku-yotop">
                 {% if variant.sku != blank and section.settings.display_sku %}
                   <p class="sku">
-                    <span itemprop="sku">Style#: {{ variant.sku }}</span>
+                    <span>Style#: {{ variant.sku }}</span>
                   </p>
                 {% endif %}
                 
@@ -220,7 +228,7 @@
 
               {% if section.settings.product_description_position == "top" %}
                 {% if product.description != blank %}
-                 <div class="description" itemprop="description">
+                 <div class="description">
                    {{ product.description | split: '<!-- split -->' | first }}
                  </div>
                {% endif %}
@@ -254,7 +262,7 @@
 
               {% if section.settings.product_description_position == "bottom" %}
                 {% if product.description != blank %}
-                 <div class="description bottom" itemprop="description">
+                 <div class="description bottom">
                   {{ product.description | split: '<!-- split -->' | first }}
                  </div>
                 {% endif %}

@@ -178,10 +178,10 @@
                   {% assign per_slide_num = block.settings.products_per | plus: 0 %}
                   <div class="gallery-cell thumbnail
                   {% if products_length > per_slide_num %}visible-{{ per_slide }}{% else %}visible-{{ products_length }}{% endif %}
-                  " itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+                  ">
                     <div class="product-wrap">
                       <div class="relative product_image">
-                        <a href="#" itemprop="url">
+                        <a href="#">
                           <object class="placeholder-image">
                             {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
                             {{ 'product-' | append: num | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
@@ -213,7 +213,7 @@
                     <br class="clear product_clear" />
                 {% endcapture %}
 
-                <div itemtype="http://schema.org/ItemList" class="product-list collection-matrix clearfix">
+                <div class="product-list collection-matrix clearfix">
                   {% for i in (1..limit) %}
                     {% comment %}{% assign collection_group = products | map: 'id' %}{% endcomment %}
                     {% assign collection_group_thumb = collection_group | append : 'thumb' %}
@@ -231,11 +231,11 @@
                         one-sixth column {% cycle collection_group_thumb: 'alpha', '', '', '', '', 'omega' %}
                       {% else %}
                         one-seventh column {% cycle collection_group_thumb: 'alpha', '', '', '', '', '', 'omega' %}
-                      {% endif %} thumbnail {% cycle collection_group_mobile: 'even', 'odd' %}" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+                      {% endif %} thumbnail {% cycle collection_group_mobile: 'even', 'odd' %}">
 
                       <div class="product-wrap">
                         <div class="relative product_image swap-{{ settings.collection_secondary_image }}">
-                          <a href="#" itemprop="url">
+                          <a href="#">
                             {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
                             {{ 'product-' | append: num | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
                           </a>

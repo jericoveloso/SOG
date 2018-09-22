@@ -1,23 +1,107 @@
 <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name": "{{ shop.name }}",
-    "url": "{{ shop.secure_url }}",
-    "logo": "{{ 'sons-of-gotham-logo.png' | file_img_url: 'master' | prepend: 'https:' }}",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "{{ shop.address.street }}",
-      "addressLocality": "{{ shop.address.city }}",
-      "addressRegion": "{{ shop.address.province_code }}",
-      "postalCode": "{{ shop.address.zip }}",
-      "addressCountry": "{{ shop.address.country }}"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer support",
-      "telephone": "{{ shop.phone | replace: '.', '-' | prepend: '+1-' }}",
-      "email": "{{ shop.email }}"
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{- shop.name -}}",
+  "url": "{{- shop.secure_url -}}",
+  "logo": "{{- 'sons-of-gotham-logo.png' | file_img_url: 'master' | prepend: 'https:' -}}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{- shop.address.street -}}",
+    "addressLocality": "{{- shop.address.city -}}",
+    "addressRegion": "{{- shop.address.province_code -}}",
+    "postalCode": "{{- shop.address.zip -}}",
+    "addressCountry": "{{- shop.address.country -}}"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "telephone": "{{- shop.phone | replace: '.', '-' | prepend: '+1-' -}}",
+    "email": "{{- shop.email -}}"
+  },
+  "sameAs": [
+    {%- assign social_links = 'twitter_link|facebook_link|google_link|youtube_link|vimeo_link|pinterest_link|tumblr_link|instagram_link|snapchat_link|houzz_link|linkedin_link|' | split: '|' -%}
+    {%- for social_link in social_links -%}
+      {%- if settings[social_link] != blank -%}
+        {%- unless forloop.first -%},{%- endunless -%}
+        "{{- settings[social_link] -}}"
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "{{- shop.secure_url -}}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{- shop.secure_url -}}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{%- if template == 'product' -%}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{- product.title | escape -}}",
+  "image": [
+    {%- for image in product.images -%}
+      "{{- image | img_url: '220x220' | prepend: 'https:' -}}"
+      {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  "description": "{{- product.description | strip_html | strip | newline_to_br | strip_newlines | replace: '<br />', ' ' -}}",
+  "brand": {
+    "@type": "Thing",
+    "name": "{{- product.vendor | escape -}}"
+  },
+  "offers": {
+    {%- if product.variants.size > 1 -%}
+      "@type": "AggregateOffer",
+      {%- if product.price_varies -%}
+        "highPrice": "{{- product.price_max | money_without_currency -}}",
+        "lowPrice": "{{- product.price_min | money_without_currency -}}",
+      {%- else -%}
+        "price": "{{- product.price | money_without_currency -}}",
+        "priceValidUntil": "{{- 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' -}}",
+      {%- endif -%}
+      "offerCount": "{{- product.variants.size -}}",
+      "availability": "https://schema.org/{%- if product.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
+      "offers": [
+        {%- for variant in product.variants -%}
+          {
+            "@type": "Offer",
+            "sku": "{{- variant.sku -}}",
+            {%- if product.price_varies -%}
+              "price": "{{- variant.price | money_without_currency -}}",
+            {%- endif -%}
+            "availability": "https://schema.org/{%- if variant.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
+            "url": "{{- variant.url | prepend: shop.secure_url -}}"
+          }
+          {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ],
+    {%- else -%}
+      {%- assign variant = product.selected_or_first_available_variant -%}
+      "@type": "Offer",
+      "sku": "{{- variant.sku -}}",
+      "price": "{{- variant.price | money_without_currency -}}",
+      "priceValidUntil": "{{- 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' -}}",
+      "availability": "https://schema.org/{%- if variant.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
+      "url": "{{- variant.url | prepend: shop.secure_url -}}",
+    {%- endif -%}
+    "priceCurrency": "{{- shop.currency -}}",
+    "itemCondition": "https://schema.org/NewCondition",        
+    "seller": {
+      "@type": "Organization",
+      "name": "{{- shop.name | escape -}}"
     }
   }
+}
 </script>
+{%- endif -%}

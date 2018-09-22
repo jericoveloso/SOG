@@ -3,7 +3,7 @@
   {% assign variant = product.selected_or_first_available_variant %}
 
   <div class="product-{{ product.id }} section clearfix">
-    <div class="product_section js-product_section" itemscope itemtype="http://schema.org/Product">
+    <div class="product_section js-product_section">
       <div class="product-images half">
         {% include 'product-images', image_width: 'full' %}
         <div class="banner_holder">
@@ -22,16 +22,16 @@
 
         {% if settings.display_vendor %}
           <p class="vendor">
-            <span itemprop="brand" class="vendor">{{ product.vendor | link_to_vendor }}</span>
+            <span class="vendor">{{ product.vendor | link_to_vendor }}</span>
           </p>
         {% endif %}
 
         {% if variant.sku != blank and settings.display_sku %}
           <p class="sku">
-            <span itemprop="sku">{{ variant.sku }}</span>
+            <span>{{ variant.sku }}</span>
           </p>
         {% endif %}
-        <h1 class="product_name" itemprop="name"><a href="{{ product.url }}">{{ product.title }}</a></h1>
+        <h1 class="product_name"><a href="{{ product.url }}">{{ product.title }}</a></h1>
         <div class="feature_divider"></div>
 
         {% assign product_tags = product.tags | join: ' ' %}
@@ -49,14 +49,9 @@
         {% if collection_handles contains 'coming-soon' %}
           <p class="modal_price">{{ 'collections.general.coming_soon' | t }}</p>
         {% else %}
-          <p class="modal_price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-            <meta itemprop="seller" content="{{ shop.name | escape }}" />
-            <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
-            <meta itemprop="itemCondition" content="New" />
-
+          <p class="modal_price">
             <span class="sold_out">{% if variant.available == false %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
-            <span itemprop="price" content="{{ variant.price | money_without_currency | remove: "," }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
+            <span content="{{ variant.price | money_without_currency | remove: "," }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
               <span class="current_price {% if product.available == false %}hidden{% endif %}">
                 {% if variant.price > 0 %}
                   <span class="money">{{ variant.price | money }}</span>
@@ -77,7 +72,7 @@
 
         {% if settings.product_description_position == "top" %}
           {% if settings.frontpage_display_description and product.description != blank %}
-            <div class="description" itemprop="description">
+            <div class="description">
               {{ product.description | split: '<!-- split -->' | first }}
             </div>
           {% endif %}
@@ -91,7 +86,7 @@
 
         {% if settings.product_description_position == "bottom" %}
           {% if settings.frontpage_display_description and product.description != blank %}
-           <div class="description bottom" itemprop="description">
+           <div class="description bottom">
             {{ product.description | split: '<!-- split -->' | first }}
            </div>
           {% endif %}
