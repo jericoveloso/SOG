@@ -1,23 +1,44 @@
 <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name": "{{ shop.name }}",
-    "url": "{{ shop.secure_url }}",
-    "logo": "{{ 'sons-of-gotham-logo.png' | file_img_url: 'master' | prepend: 'https:' }}",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "{{ shop.address.street }}",
-      "addressLocality": "{{ shop.address.city }}",
-      "addressRegion": "{{ shop.address.province_code }}",
-      "postalCode": "{{ shop.address.zip }}",
-      "addressCountry": "{{ shop.address.country }}"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer support",
-      "telephone": "{{ shop.phone | replace: '.', '-' | prepend: '+1-' }}",
-      "email": "{{ shop.email }}"
-    }
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  "url": "{{ shop.secure_url }}",
+  "logo": "{{ 'sons-of-gotham-logo.png' | file_img_url: 'master' | prepend: 'https:' }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ shop.address.street }}",
+    "addressLocality": "{{ shop.address.city }}",
+    "addressRegion": "{{ shop.address.province_code }}",
+    "postalCode": "{{ shop.address.zip }}",
+    "addressCountry": "{{ shop.address.country }}"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "telephone": "{{ shop.phone | replace: '.', '-' | prepend: '+1-' }}",
+    "email": "{{ shop.email }}"
+  },
+  "sameAs": [
+    {%- assign social_links = 'twitter_link|facebook_link|google_link|youtube_link|vimeo_link|pinterest_link|tumblr_link|instagram_link|snapchat_link|houzz_link|linkedin_link|' | split: '|' -%}
+    {%- for social_link in social_links -%}
+      {%- if settings[social_link] != blank -%}
+        {%- unless forloop.first -%},{%- endunless -%}
+        "{{ settings[social_link] }}"
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "{{ shop.secure_url }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ shop.secure_url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
   }
+}
 </script>
