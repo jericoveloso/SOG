@@ -1,0 +1,23 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    "url": "{{ shop.secure_url }}",
+    "logo": "{{ 'sons-of-gotham-logo.png' | file_img_url: 'master' | prepend: 'https:' }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ shop.address.street }}",
+      "addressLocality": "{{ shop.address.city }}",
+      "addressRegion": "{{ shop.address.province_code }}",
+      "postalCode": "{{ shop.address.zip }}",
+      "addressCountry": "{{ shop.address.country }}"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "telephone": "{{ shop.phone | replace: '.', '-' | prepend: '+1-' }}",
+      "email": "{{ shop.email }}"
+    }
+  }
+</script>
