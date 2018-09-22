@@ -518,3 +518,23 @@ a.nav-tabs__item__link--active {
 
 .collection-lp--men {
 }
+
+// kapow!
+[data-dropdown-rel='new'] {
+  text-indent: -9999in;
+  width: 57px;
+  background: url({{ 'new-kapow.png' | asset_url }}) no-repeat;
+  background-size: 57px 40px;
+  &:hover {
+    -webkit-animation-name: hvr-icon-pulse-grow;
+    animation-name: hvr-icon-pulse-grow;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;    
+  }
+}
