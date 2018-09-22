@@ -26,12 +26,12 @@
         {% endif %}
 
         {% if section.settings.product_breadcrumb %}
-          <div class="breadcrumb_text" itemscope itemtype="http://schema.org/BreadcrumbList">
-            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="item" class="breadcrumb_link"><span itemprop="name">{{ 'general.breadcrumbs.home' | t }}</span></a></span>
+          <div class="breadcrumb_text">
+            <span><a href="{{ shop.url }}" title="{{ shop.name | escape }}" class="breadcrumb_link"><span>{{ 'general.breadcrumbs.home' | t }}</span></a></span>
             <span class="breadcrumb-divider">/</span>
-            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <span>
               {% if collection %}
-                <a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="item" class="breadcrumb_link"><span itemprop="name">{{ collection.title }}</span></a>
+                <a href="{{ collection.url }}" title="{{ collection.title | escape }}" class="breadcrumb_link"><span>{{ collection.title }}</span></a>
               {% else %}
                 <a href="/collections/all" title="{{ collections.all.title }}" class="breadcrumb_link"><span>{{ collections.all.title }}</span></a>
               {% endif %}
@@ -52,7 +52,7 @@
 
       <div class="product-{{ product.id }}"
             data-free-text="{{ settings.free_price_text }}">
-        <div class="section product_section clearfix js-product_section {% if section.settings.product_images_position == 'right' %}align_right--images{% endif %}" itemscope itemtype="http://schema.org/Product" data-rv-handle="{{ product.handle }}">
+        <div class="section product_section clearfix js-product_section {% if section.settings.product_images_position == 'right' %}align_right--images{% endif %}" data-rv-handle="{{ product.handle }}">
 
           <div class="nine columns {% if section.settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}">
             {% include 'product-images' %}
@@ -77,16 +77,16 @@
 
              {% if section.settings.display_vendor %}
               <p class="vendor">
-                <span itemprop="brand" class="vendor">{{ product.vendor | link_to_vendor }}</span>
+                <span class="vendor">{{ product.vendor | link_to_vendor }}</span>
               </p>
             {% endif %}
 
             {% if variant.sku != blank and section.settings.display_sku %}
               <p class="sku">
-                <span itemprop="sku">{{ variant.sku }}</span>
+                <span>{{ variant.sku }}</span>
               </p>
             {% endif %}
-            <h1 class="product_name" itemprop="name">{{ product.title }}</h1>
+            <h1 class="product_name">{{ product.title }}</h1>
             {% if settings.enable_shopify_product_badges and settings.enable_shopify_review_comments %}
               <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
             {% endif %}
@@ -106,14 +106,9 @@
 
 
             {% unless collection_handles contains 'coming-soon' %}
-              <p class="modal_price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-                <meta itemprop="seller" content="{{ shop.name | escape }}" />
-                <link itemprop="availability" href="http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}">
-                <meta itemprop="itemCondition" content="New" />
-
+              <p class="modal_price">
                 <span class="sold_out">{% if variant.available == false %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
-                <span itemprop="price" content="{{ variant.price | money_without_currency | remove: "," }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
+                <span content="{{ variant.price | money_without_currency | remove: "," }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
                   <span class="current_price {% if product.available == false %}hidden{% endif %}">
                     {% if variant.price > 0 %}
                       <span class="money">{{ variant.price | money }}</span>
@@ -142,7 +137,7 @@
 
             {% if section.settings.product_description_position == "top" %}
               {% if product.description != blank %}
-               <div class="description" itemprop="description">
+               <div class="description">
                  {{ product.description | split: '<!-- split -->' | first }}
                </div>
              {% endif %}
@@ -154,7 +149,7 @@
 
             {% if section.settings.product_description_position == "bottom" %}
               {% if product.description != blank %}
-               <div class="description bottom" itemprop="description">
+               <div class="description bottom">
                 {{ product.description | split: '<!-- split -->' | first }}
                </div>
               {% endif %}

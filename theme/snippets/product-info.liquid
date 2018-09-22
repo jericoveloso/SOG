@@ -1,10 +1,10 @@
 <div class="product-details">
-  <span class="title" itemprop="name">{{ product.title }}</span>
+  <span class="title">{{ product.title }}</span>
   {% if settings.enable_shopify_collection_badges and settings.enable_shopify_review_comments %}
     <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
   {% endif %}
   {% if settings.display_vendor %}
-    <span itemprop="brand" class="brand">{{ product.vendor }}</span>
+    <span class="brand">{{ product.vendor }}</span>
   {% endif %}
 
   {% if collection_handles contains 'coming-soon' %}
