@@ -40,7 +40,7 @@
 
   <div class="product-wrap">
     <div class="relative product_image swap-{{ settings.collection_secondary_image }}">
-      <a href="{{ product.url | within: collection }}" itemprop="url">
+      <a href="{{ product.url | within: collection }}">
         <div class="image__container" style="{% if settings.align_height %} max-width: {{ product_set_width }}px; {% else %} max-width: {{- product.featured_image.width -}}px; {% endif %}">
           <img  src="{{ product.featured_image | product_img_url: '100x' }}"
                 alt="{{ alt_text | escape }}"
@@ -68,7 +68,7 @@
         </a>
       {% include "product-details" %}
     </div>
-    <a class="product-info__caption {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ product.url | within: collection }}" itemprop="url">
+    <a class="product-info__caption {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ product.url | within: collection }}">
       {% include "product-info" %}
     </a>
   </div>
