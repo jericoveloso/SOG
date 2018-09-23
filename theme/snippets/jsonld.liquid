@@ -63,13 +63,8 @@
   "offers": {
     {%- if product.variants.size > 1 -%}
       "@type": "AggregateOffer",
-      {%- if product.price_varies -%}
-        "highPrice": "{{- product.price_max | money_without_currency -}}",
-        "lowPrice": "{{- product.price_min | money_without_currency -}}",
-      {%- else -%}
-        "price": "{{- product.price | money_without_currency -}}",
-        "priceValidUntil": "{{- 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' -}}",
-      {%- endif -%}
+      "highPrice": "{{- product.price_max | money_without_currency -}}",
+      "lowPrice": "{{- product.price_min | money_without_currency -}}",
       "offerCount": "{{- product.variants.size -}}",
       "availability": "https://schema.org/{%- if product.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
       "offers": [
@@ -77,10 +72,7 @@
           {
             "@type": "Offer",
             "sku": "{{- variant.sku -}}",
-            {%- if product.price_varies -%}
-              "price": "{{- variant.price | money_without_currency -}}",
-            {%- endif -%}
-            "availability": "https://schema.org/{%- if variant.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
+            "price": "{{- variant.price | money_without_currency -}}",
             "url": "{{- variant.url | prepend: shop.secure_url -}}"
           }
           {%- unless forloop.last -%},{%- endunless -%}
