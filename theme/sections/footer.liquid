@@ -71,7 +71,7 @@
             </div>
 
           {% elsif block.type == 'text' %}
-            <div class="footer_content">
+            <div class="footer_content footer_content--{{ block.id }}">
               {% if block.settings.title != blank %}
                 <h6>{{ block.settings.title }}<span class="right icon-down-arrow"></span></h6>
                 <div class="toggle_content">

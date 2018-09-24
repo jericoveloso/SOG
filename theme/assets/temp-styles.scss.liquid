@@ -520,7 +520,8 @@ a.nav-tabs__item__link--active {
 }
 
 // kapow!
-[data-dropdown-rel='new'] {
+[data-dropdown-rel='new'],
+[data-mobile-dropdown-rel='new'] a {
   text-indent: -9999in;
   width: 57px;
   background: url({{ 'new-kapow.png' | asset_url }}) no-repeat 50% 50%;
@@ -536,5 +537,18 @@ a.nav-tabs__item__link--active {
     animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;    
+  }
+}
+
+// Footer social icons
+@media (max-width: 798px) {
+  .footer_content--1514049053923 {
+    display: none;
+  }
+  .footer-social-icons--mobile .social_icons {
+    li {
+      float: none;
+      display: inline-block;
+    }
   }
 }
