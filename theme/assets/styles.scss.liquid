@@ -1891,18 +1891,26 @@ li.dropdown_link--vertical:last-of-type .vertical-menu_sub-submenu {
       line-height: 41px;
       text-align: center;
       padding-top: 2px;
-      &:hover, a:focus {
-        .icon-twitter {color: #1da1f2 !important;};
-        .icon-facebook {color: #3b5998}
-        .icon-youtube {color: #ff0000}
-        .icon-pinterest {color: #bd081c}
-        .icon-instagram {color: #c32aa3}
-      }
     }
   }
   .menu.right {
     @media (max-width: 1023px) {
       display: none;
+    }
+  }
+}
+
+.social_icons {
+  a {
+    [class*='icon-'] {
+      transition: color .3s linear !important;
+    }
+    &:hover, &:focus {
+      .icon-twitter {color: #1da1f2 !important}
+      .icon-facebook {color: #3b5998 !important}
+      .icon-youtube {color: #ff0000 !important}
+      .icon-pinterest {color: #bd081c !important}
+      .icon-instagram {color: #c32aa3 !important}
     }
   }
 }
