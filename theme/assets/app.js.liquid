@@ -5739,11 +5739,11 @@ var sogUtils = {
 
       // Search and collection endpoints return different formats
       let imageUrl1 = sogUtils.noImageUrl;
-      let imageUrl2;
+      let imageUrl2 = sogUtils.noImageUrl;
       if (Array.isArray(product.images) && product.images.length) {
         imageUrl1 = product.images[0].src;
         imageUrl2 = product.images[1] !== undefined ? product.images[1].src : imageUrl1;
-      } else if (product.image1 !== undefined) {
+      } else if (product.image1 !== null) {
         imageUrl1 = product.image1.src;
         imageUrl2 = product.image2 !== null ? product.image2.src : imageUrl1;
       }
