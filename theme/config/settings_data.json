@@ -4705,6 +4705,17 @@
       "1537257935787": {
         "type": "yellow-ribbon",
         "settings": {}
+      },
+      "newsletter-popup": {
+        "type": "newsletter-popup",
+        "settings": {
+          "enabled": true,
+          "form_action": "https:\/\/sonsofgotham.us3.list-manage.com\/subscribe\/post?u=d6a6201a918b69f4fdd958597&amp;id=7f01633b9a",
+          "heading": "Be the first to know!",
+          "subheading": "Sign up for exclusive updates, new arrivals and insider-only discounts",
+          "delay": 10,
+          "background_image": "shopify:\/\/shop_images\/newsletter-bg_478d84ff-3c7c-455e-9ac8-f942eeab3dd2.png"
+        }
       }
     },
     "content_for_index": [

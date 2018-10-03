@@ -166,7 +166,7 @@
       {% endif %}
     {% endif %}
 
-    <script src="{{ 'plugins.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugins.js' | asset_url }}"></script>
     <script src="{{ 'app.js' | asset_url }}" defer></script>
 
     {% include 'size-charts' %}
@@ -221,6 +221,7 @@
       {% include 'product-card', as_template: true %}
     </script>
 
+    {% section 'newsletter-popup' %}
     {% include 'jsonld' %}
   </body>
 </html>
