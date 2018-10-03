@@ -1,0 +1,190 @@
+{%- if section.settings.enabled -%}
+  <section id="NewsletterPopup" data-section-id="{{ section.id }}" data-section-type="newsletter-popup"
+           data-mfp-delay="{{ section.settings.delay | times: 1000 }}"
+           data-mfp-effect="mfp-newspaper"
+           class="mfp-with-anim mfp-hide newsletter-popup"
+           style="{% if section.settings.background_image != blank %}background-image:url({{ section.settings.background_image | img_url: 'master' }});{% endif %}">
+    <h3 class="newsletter-popup__heading">{{ section.settings.heading | default: 'Newsletter Popup' }}</h3>
+    {%- if section.settings.subheading != blank -%}
+      <p class="newsletter-popup__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    <div id="NewsletterPopupMsg" class="msg" style="display:none;"></div>
+    <form id="NewsletterPopupForm" action="{{ section.settings.form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank" class="newsletter-popup__form">
+      <label for="NewsletterPopupEmail" class="sr-only">{{ 'general.newsletter_form.email' | t }}</label>
+      <input id="NewsletterPopupEmail" type="email" name="EMAIL" value="{% if customer %}{{ customer.email }}{% endif %}"
+        placeholder="{{ 'general.newsletter_form.placeholder' | t }}" class="newsletter-popup__email" autocorrect="off" autocapitalize="off" required>
+      <button type="submit" class="newsletter-popup__submit" name="subscribe">{{ 'general.newsletter_form.submit' | t }}</button>
+    </form>
+  </section>
+{%- endif -%}
+
+{% stylesheet 'scss' %}
+  .newsletter-popup {
+    position: relative;
+    width: auto;
+    max-width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 100px 20px 20px 280px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+    .mfp-close {
+      top: 75px;
+    }
+    .msg {
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .msg--error {
+      color: #e76062;
+    }
+    .msg--success {
+      color: #8dd266;
+    }
+  }
+  .newsletter-popup__heading {
+    margin-bottom: 0;
+    font-weight: 900;
+  }
+  .newsletter-popup__form {
+    display: flex;
+  }
+  .newsletter-popup__email {
+  }
+  .newsletter-popup__submit {
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  .mfp-newspaper {
+    .mfp-with-anim {
+      opacity: 0;
+      transform: scale(0) rotate(540deg);
+      transition: all 0.8s ease-in-out 0.2s;
+    }
+    &.mfp-bg {
+      opacity: 0;
+      transition: all 0.2s linear;
+    }
+    &.mfp-ready {
+      .mfp-with-anim {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+      &.mfp-bg {
+        opacity: 0.8;
+      }
+    }
+    &.mfp-removing {
+      .mfp-with-anim {
+        transform: scale(0) rotate(-360deg);
+        opacity: 0;
+        transition-delay: 0s;
+      }
+      &.mfp-bg {
+        opacity: 0;
+        transition-delay: 0.2s;
+      }
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  (function($, undefined){
+    $(document).ready(function(){
+      var popupSelector = '#NewsletterPopup';
+      if (!Cookies.get('mcpu_shown') && $(window).width() > 767) {
+        setTimeout(function(){
+          $.magnificPopup.open({
+            items: {
+              src: popupSelector,
+              type: 'inline'
+            },
+            midClick: true,
+            removalDelay: 1000,
+            callbacks: {
+              beforeOpen: function() {
+                this.st.mainClass = $(popupSelector).data('mfpEffect');
+              }
+            }
+          });
+        }, $(popupSelector).data('mfpDelay'));
+      }
+    });
+
+    // Submit form
+    var $form = $('#NewsletterPopupForm');
+    var $msg  = $('#NewsletterPopupMsg');
+
+    $form.on('submit', function(event){
+      event.preventDefault();
+      $.get(
+        $form.attr('action').replace('/post?', '/post-json?') + '&c=?',
+        $form.serialize(),
+        function(response){
+          $msg.html(response.msg).find('a').attr('target', '_blank');
+          if (response.result === 'success') {
+            $msg.addClass('msg--success');
+            $form.slideUp('fast');
+            Cookies.set('mcpu_shown', 1, {expires: 7});
+          } else {
+            $msg.addClass('msg--error');
+          }
+
+          $msg.slideDown('fast');
+        },
+        'json'
+      );
+    });
+  })(jQuery);
+</script>
+
+{% schema %}
+  {
+    "name": "Newsletter popup",
+    "settings": [
+      {
+        "type": "header",
+        "content": "For the newsletter popup"
+      },
+      {
+        "id": "enabled",
+        "type": "checkbox",
+        "label": "Show newsletter popup",
+        "default": true
+      },
+      {
+        "id": "form_action",
+        "type": "text",
+        "label": "MailChimp form action URL",
+        "info": "[Find your MailChimp form action URL](https:\/\/docs.shopify.com\/manual\/configuration\/store-customization\/communicating-with-customers\/accounts-and-newsletters\/get-a-mailchimp-form-action-url)."
+      },
+      {
+        "id": "heading",
+        "type": "text",
+        "label": "Heading"
+      },
+      {
+        "id": "subheading",
+        "type": "text",
+        "label": "Subheading"
+      },
+      {
+        "id": "delay",
+        "type": "range",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "s",
+        "label": "Delay showing popup",
+        "default": 10
+      },
+      {
+        "id": "background_image",
+        "type": "image_picker",
+        "label": "Background image"
+      }
+    ]
+  }
+{% endschema %}
