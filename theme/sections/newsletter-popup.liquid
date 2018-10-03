@@ -1,10 +1,11 @@
 {%- if section.settings.enabled -%}
   <section id="NewsletterPopup" data-section-id="{{ section.id }}" data-section-type="newsletter-popup"
            data-mfp-delay="{{ section.settings.delay | times: 1000 }}"
-           data-mfp-effect="mfp-newspaper"
+           data-mfp-effect="mfp-zoom-out"
            class="mfp-with-anim mfp-hide newsletter-popup"
-           style="{% if section.settings.background_image != blank %}background-image:url({{ section.settings.background_image | img_url: 'master' }});{% endif %}">
-    <h3 class="newsletter-popup__heading">{{ section.settings.heading | default: 'Newsletter Popup' }}</h3>
+           style="">
+    <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="" class="newsletter-popup__image">
+    <h3 class="sr-only newsletter-popup__heading">{{ section.settings.heading | default: 'Newsletter Popup' }}</h3>
     {%- if section.settings.subheading != blank -%}
       <p class="newsletter-popup__subheading">{{ section.settings.subheading }}</p>
     {%- endif -%}
@@ -21,17 +22,20 @@
 {% stylesheet 'scss' %}
   .newsletter-popup {
     position: relative;
-    width: auto;
-    max-width: 600px;
-    height: 300px;
+    width: 100%;
+    max-width: 640px;
+    // height: 300px;
     margin: 0 auto;
-    padding: 100px 20px 20px 280px;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-size: contain;
+    padding: 0;
+    background-color: #383838;
+    @media (min-width:768px) {
+      padding: 40px 60px;
+    }
     .mfp-close {
-      top: 75px;
+      color: #4d4d4d;
+      &:hover, &:focus {
+        color: #999;
+      }
     }
     .msg {
       font-size: 12px;
@@ -44,33 +48,53 @@
       color: #8dd266;
     }
   }
+  .newsletter-popup__image {
+    display: block;
+    width: 100%;
+    max-width: 392px;
+    margin: 0 auto;
+  }
   .newsletter-popup__heading {
     margin-bottom: 0;
     font-weight: 900;
   }
+  .newsletter-popup__subheading {
+    text-align: center;
+    color: #b3b3b3;
+  }
   .newsletter-popup__form {
     display: flex;
+    margin: 0 auto;
+    @media (min-width:768px) {
+      max-width: 60%;
+    }
   }
   .newsletter-popup__email {
+    margin-bottom: 0 !important;
+    border-radius: 6px !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
   .newsletter-popup__submit {
-    margin-left: 10px;
+    border-radius: 6px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
     white-space: nowrap;
   }
-  .mfp-newspaper {
+  .mfp-zoom-out {
     .mfp-with-anim {
       opacity: 0;
-      transform: scale(0) rotate(540deg);
-      transition: all 0.8s ease-in-out 0.2s;
+      transition: all 0.3s ease-in-out;
+      transform: scale(1.3);
     }
     &.mfp-bg {
       opacity: 0;
-      transition: all 0.2s linear;
+      transition: all 0.3s ease-out;
     }
     &.mfp-ready {
       .mfp-with-anim {
         opacity: 1;
-        transform: scale(1) rotate(0deg);
+        transform: scale(1);
       }
       &.mfp-bg {
         opacity: 0.8;
@@ -78,13 +102,11 @@
     }
     &.mfp-removing {
       .mfp-with-anim {
-        transform: scale(0) rotate(-360deg);
+        transform: scale(1.3);
         opacity: 0;
-        transition-delay: 0s;
       }
       &.mfp-bg {
         opacity: 0;
-        transition-delay: 0.2s;
       }
     }
   }
@@ -94,7 +116,7 @@
   (function($, undefined){
     $(document).ready(function(){
       var popupSelector = '#NewsletterPopup';
-      if (!Cookies.get('mcpu_shown') && $(window).width() > 767) {
+      if (!Cookies.get('mcpu_shown')) {
         setTimeout(function(){
           $.magnificPopup.open({
             items: {
@@ -102,7 +124,7 @@
               type: 'inline'
             },
             midClick: true,
-            removalDelay: 1000,
+            removalDelay: 300,
             callbacks: {
               beforeOpen: function() {
                 this.st.mainClass = $(popupSelector).data('mfpEffect');
