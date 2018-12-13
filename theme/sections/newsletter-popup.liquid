@@ -38,8 +38,7 @@
       }
     }
     .msg {
-      font-size: 12px;
-      line-height: 1.2;
+      text-align: center;
     }
     .msg--error {
       color: #e76062;
@@ -128,6 +127,9 @@
             callbacks: {
               beforeOpen: function() {
                 this.st.mainClass = $(popupSelector).data('mfpEffect');
+              },
+              afterClose: function() {
+                Cookies.set('mcpu_shown', 1, {expires: 7});
               }
             }
           });
@@ -149,7 +151,6 @@
           if (response.result === 'success') {
             $msg.addClass('msg--success');
             $form.slideUp('fast');
-            Cookies.set('mcpu_shown', 1, {expires: 7});
           } else {
             $msg.addClass('msg--error');
           }
