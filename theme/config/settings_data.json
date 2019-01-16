@@ -3862,7 +3862,7 @@
         "settings": {
           "fixed_header": true,
           "search_enabled": true,
-          "promo_text": "<p>Free Shipping &amp; Free Returns. All Day 24\/7<\/p>",
+          "promo_text": "<p>Free US Shipping On All Orders&nbsp;<\/p>",
           "social_icons_header": true,
           "show_cart": true,
           "phone_number": "888.766.7442",
@@ -4569,7 +4569,7 @@
             "type": "one_column",
             "settings": {
               "image": "shopify:\/\/shop_images\/mens-tshirt_3780px.jpg",
-              "url": "\/collections\/mens-t-shirts\/Men"
+              "url": "\/collections\/mens-regular-fit-t-shirt"
             }
           },
           "1537218959664": {
@@ -4578,7 +4578,7 @@
               "image1": "shopify:\/\/shop_images\/v-neck_1860px.jpg",
               "url1": "\/collections\/mens-v-neck-t-shirts",
               "image2": "shopify:\/\/shop_images\/tanks_1860px.jpg",
-              "url2": "\/collections\/mens-tank-tops\/Men"
+              "url2": "\/collections\/mens-tank"
             }
           },
           "1537219566474": {
@@ -4592,11 +4592,11 @@
             "type": "three_columns",
             "settings": {
               "image1": "shopify:\/\/shop_images\/hoodies_1220px.jpg",
-              "url1": "\/collections\/hoodies\/Men",
+              "url1": "\/collections\/pullover-hoodie",
               "image2": "shopify:\/\/shop_images\/longsleeves_1220px.jpg",
-              "url2": "\/collections\/long-sleeves",
+              "url2": "\/collections\/mens-long-sleeve-t-shirt",
               "image3": "shopify:\/\/shop_images\/sweatshirt_1220px.jpg",
-              "url3": "\/collections\/style-sweatshirt"
+              "url3": "\/collections\/mens-crewneck-sweatshirt"
             }
           },
           "1537219914503": {
@@ -4623,7 +4623,7 @@
             "type": "one_column",
             "settings": {
               "image": "shopify:\/\/shop_images\/womens-tshirt_3780px.jpg",
-              "url": "\/collections\/mens-t-shirts\/Women"
+              "url": "\/collections\/womens-t-shirt"
             }
           },
           "1537221360211": {
@@ -4632,21 +4632,21 @@
               "image1": "shopify:\/\/shop_images\/v-neck_1860px_d0ac1211-8867-43b8-97a6-bf918da1a4f9.jpg",
               "url1": "\/collections\/womens-v-neck-t-shirts",
               "image2": "shopify:\/\/shop_images\/tanks_1860px_29eda182-1829-42cc-9445-b17481d43f29.jpg",
-              "url2": "\/collections\/mens-tank-tops\/Women"
+              "url2": "\/collections\/style-junior-tank-top"
             }
           },
           "1537221425595": {
             "type": "one_column",
             "settings": {
               "image": "shopify:\/\/shop_images\/all-over-prints_3780px_14ed93e6-57fc-4b09-a824-4334d622f2ef.jpg",
-              "url": "\/collections\/style-adult-all-over-print-100-poly-t-shirt\/Women"
+              "url": "\/collections\/juniors-all-over-print-t-shirt"
             }
           },
           "1537221502933": {
             "type": "two_columns",
             "settings": {
               "image1": "shopify:\/\/shop_images\/hoodies_1860px.jpg",
-              "url1": "\/collections\/hoodies\/Women",
+              "url1": "\/collections\/pullover-hoodie",
               "image2": "shopify:\/\/shop_images\/costumes_1860px.jpg",
               "url2": "shopify:\/\/collections\/costumes"
             }
@@ -4711,7 +4711,7 @@
         "settings": {
           "enabled": true,
           "form_action": "https:\/\/sonsofgotham.us3.list-manage.com\/subscribe\/post?u=d6a6201a918b69f4fdd958597&amp;id=7f01633b9a",
-          "heading": "Be the first to know!",
+          "heading": "Be The First To Know!",
           "subheading": "Sign up for exclusive updates, new arrivals and insider-only discounts",
           "delay": 10,
           "background_image": "shopify:\/\/shop_images\/newsletter-bg_478d84ff-3c7c-455e-9ac8-f942eeab3dd2.png"
