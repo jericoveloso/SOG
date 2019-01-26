@@ -5743,9 +5743,9 @@ var sogUtils = {
       if (Array.isArray(product.images) && product.images.length) {
         imageUrl1 = product.images[0].src;
         imageUrl2 = product.images[1] !== undefined ? product.images[1].src : imageUrl1;
-      } else if (product.image1 !== null) {
+      } else if (product.image1 && product.image1.src.length) {
         imageUrl1 = product.image1.src;
-        imageUrl2 = product.image2 !== null ? product.image2.src : imageUrl1;
+        imageUrl2 = product.image2 && product.image2.src.length ? product.image2.src : imageUrl1;
       }
 
       [
